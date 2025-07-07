@@ -63,7 +63,7 @@ function App() {
 
   const achievements = [
     {
-      title: "Hackathon Winner 2024",
+      title: "H",
       image:
         "https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=800",
       rotation: "rotate-[-5deg]",
@@ -77,28 +77,28 @@ function App() {
       position: "top-5 left-[40%]",
     },
     {
-      title: "Tech Conference Speaker",
+      title: "",
       image:
         "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg?auto=compress&cs=tinysrgb&w=800",
       rotation: "rotate-[10deg]",
       position: "top-32 left-[55%]",
     },
     {
-      title: "AWS Certified Developer",
+      title: "",
       image:
         "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800",
       rotation: "rotate-[2deg]",
       position: "top-20 right-[35%]",
     },
     {
-      title: "Google Developer Expert",
+      title: "G",
       image:
         "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800",
       rotation: "rotate-[-7deg]",
       position: "top-24 left-[45%]",
     },
     {
-      title: "Innovation Award",
+      title: "",
       image:
         "https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=800",
       rotation: "rotate-[4deg]",
