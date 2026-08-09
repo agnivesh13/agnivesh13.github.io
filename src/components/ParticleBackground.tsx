@@ -14,15 +14,26 @@ const initEngine = async (engine: Engine): Promise<void> => {
   await loadSlim(engine);
 };
 
-/** Fewer particles on small screens — this runs on every frame. */
+/**
+ * Scales the particle count with viewport *area* rather than width, so a wide
+ * monitor gets a denser field instead of the same handful of dots spread thin.
+ * Clamped at both ends: enough to read as a network on a phone, few enough to
+ * stay at 60fps on a large display.
+ */
+const AREA_PER_PARTICLE = 11000;
+const MIN_PARTICLES = 45;
+const MAX_PARTICLES = 190;
+
 function useParticleCount(): number {
-  const [count, setCount] = useState(70);
+  const [count, setCount] = useState(110);
 
   useEffect(() => {
     const update = () => {
-      const w = window.innerWidth;
-      setCount(w < 640 ? 32 : w < 1024 ? 50 : 80);
+      const area = window.innerWidth * window.innerHeight;
+      const scaled = Math.round(area / AREA_PER_PARTICLE);
+      setCount(Math.min(MAX_PARTICLES, Math.max(MIN_PARTICLES, scaled)));
     };
+
     update();
     window.addEventListener('resize', update);
     return () => window.removeEventListener('resize', update);

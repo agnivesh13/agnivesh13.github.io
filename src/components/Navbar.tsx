@@ -4,7 +4,6 @@ import { FileText, Menu, X } from 'lucide-react';
 
 import { navLinks, profile } from '../data/site';
 import { cn } from '../lib/cn';
-import avatar from '../assets/avatar.jpg';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -64,17 +63,8 @@ export default function Navbar() {
           href="#top"
           className="group flex items-center gap-2.5 font-display text-sm font-semibold tracking-tight text-white"
         >
-          {/* Decorative: the adjacent text already names the link. */}
-          <span className="grid h-8 w-8 shrink-0 place-items-center overflow-hidden rounded-lg ring-1 ring-white/15 transition-all duration-300 group-hover:ring-accent-400/60">
-            <img
-              src={avatar}
-              alt=""
-              width={64}
-              height={64}
-              loading="eager"
-              decoding="async"
-              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-            />
+          <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-accent-400 to-plasma-500 font-mono text-[13px] font-bold text-ink-950 transition-shadow duration-300 group-hover:shadow-[0_0_16px_-2px_rgba(34,211,238,0.7)]">
+            A
           </span>
           <span className="hidden whitespace-nowrap sm:inline">{profile.shortName}</span>
         </a>
