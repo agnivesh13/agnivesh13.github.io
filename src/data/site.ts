@@ -31,8 +31,8 @@ export const socials = {
   linkedin: 'https://www.linkedin.com/in/agniveshshaga/',
   x: 'https://x.com/Amuul13',
   codeforces: 'https://codeforces.com/profile/im_amuul',
-  leetcode: 'https://leetcode.com/u/im_amuul/',
-  codechef: 'https://www.codechef.com/users/im_amuul',
+  leetcode: 'https://leetcode.com/u/agniveshshaga/',
+  codechef: 'https://www.codechef.com/users/agniveshshaga',
 } as const;
 
 /* ------------------------------------------------------------------ *
@@ -126,8 +126,9 @@ export interface Achievement {
 
 export const achievements: Achievement[] = [
   {
-    title: '1-year LeetCode streak',
-    detail: 'Solved 450+ algorithm and data-structure problems on a daily streak.',
+    title: '466 problems on LeetCode',
+    detail:
+      'Algorithms and data structures across 524 active days, with a peak 144-day daily streak.',
     icon: 'flame',
   },
   {
@@ -154,9 +155,8 @@ export const achievements: Achievement[] = [
 export const handles = {
   codeforces: 'im_amuul',
   github: 'agnivesh13',
-  /** TODO(verify): confirm the LeetCode and CodeChef usernames. */
-  leetcode: 'im_amuul',
-  codechef: 'im_amuul',
+  leetcode: 'agniveshshaga',
+  codechef: 'agniveshshaga',
 } as const;
 
 /**
@@ -182,11 +182,27 @@ export const githubFallback = {
   following: 11,
 } as const;
 
-/** Hand-maintained — LeetCode exposes no CORS-enabled public API. */
+/**
+ * Hand-maintained — LeetCode's GraphQL endpoint is not CORS-enabled, so the
+ * browser cannot read it directly.
+ *
+ * To refresh, run this and paste the numbers back in:
+ *   curl -s -X POST https://leetcode.com/graphql \
+ *     -H 'Content-Type: application/json' -H 'Referer: https://leetcode.com' \
+ *     -d '{"query":"query($u:String!){matchedUser(username:$u){submitStatsGlobal{acSubmissionNum{difficulty count}}} userContestRanking(username:$u){rating attendedContestsCount topPercentage}}","variables":{"u":"agniveshshaga"}}'
+ *
+ * Last synced: 2026-08-09.
+ */
 export const leetcodeStats = {
-  rating: 1595,
-  solved: 450,
-  streakDays: 365,
+  rating: 1553,
+  contests: 19,
+  topPercent: 31.8,
+  solved: 466,
+  easy: 285,
+  medium: 172,
+  hard: 9,
+  /** Days with at least one accepted submission, 2024–2026. */
+  activeDays: 524,
 } as const;
 
 /** Hand-maintained — CodeChef exposes no CORS-enabled public API. */
