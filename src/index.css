@@ -1,3 +1,100 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    --nav-offset: 6rem;
+  }
+
+  * {
+    @apply border-white/10;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Anchor targets clear the fixed navbar instead of hiding beneath it. */
+    scroll-padding-top: var(--nav-offset);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-ink-950 font-sans text-slate-300 antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    @apply bg-accent-400/30 text-white;
+  }
+
+  /* A thin, dark scrollbar that matches the canvas. */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-ink-950;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full border-2 border-solid border-ink-950 bg-white/15;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-white/25;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-accent-400/70 ring-offset-2 ring-offset-ink-950;
+  }
+}
+
+@layer components {
+  /* Frosted panel used by every card on the page. */
+  .glass {
+    @apply relative rounded-2xl border border-white/10 bg-white/[0.035] backdrop-blur-xl;
+  }
+
+  .section-shell {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border border-accent-400/25 bg-accent-400/10
+           px-3 py-1 font-mono text-[11px] uppercase tracking-[0.18em] text-accent-300;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-br from-white via-white to-slate-500 bg-clip-text text-transparent;
+  }
+
+  .text-gradient-accent {
+    @apply bg-gradient-to-r from-accent-300 via-accent-400 to-plasma-400 bg-clip-text text-transparent;
+  }
+}
+
+@layer utilities {
+  /* Fades the marquee/scroller edges into the background. */
+  .mask-fade-x {
+    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  }
+
+  .pause-on-hover:hover [data-marquee] {
+    animation-play-state: paused;
+  }
+}
+
+/* Respect the OS "reduce motion" setting: kill decorative animation everywhere. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
