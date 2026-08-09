@@ -7,7 +7,7 @@
 
 export const profile = {
   name: 'Swami Agnivesh Shaga',
-  shortName: 'Agnivesh',
+  shortName: 'Agnivesh Shaga',
   role: 'AI/ML & Quant Research',
   institution: 'VNR VJIET',
   location: 'Hyderabad, India',
