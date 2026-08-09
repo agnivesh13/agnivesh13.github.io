@@ -19,10 +19,10 @@ export default function CodingProfiles() {
           eyebrow="Competitive Programming"
           title={
             <>
-              Metrics, pulled <span className="text-gradient-accent">live</span>.
+              Consistency, in <span className="text-gradient-accent">numbers</span>.
             </>
           }
-          description="Codeforces and GitHub are fetched from their public APIs on every page load. LeetCode and CodeChef publish no open API, so those two are kept up to date by hand."
+          description="466 problems solved across 524 active days, rated on four platforms. Codeforces and GitHub refresh on every page load — so what you're reading is current, not a screenshot from six months ago."
         />
 
         <div className="mt-12 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
