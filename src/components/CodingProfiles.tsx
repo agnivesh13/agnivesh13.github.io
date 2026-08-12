@@ -30,7 +30,7 @@ export default function CodingProfiles() {
               Consistency, in <span className="text-gradient-accent">numbers</span>.
             </>
           }
-          description={`${totalSolved} problems solved across Codeforces, LeetCode, and CodeChef — ratings update live where the platform allows it.`}
+          description={`${totalSolved} problems solved across Codeforces, LeetCode, and CodeChef. GitHub and Codeforces pull live data from publicly available APIs; LeetCode and CodeChef publish no public API, so those two are updated by hand.`}
         />
 
         <div className="mt-12 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
