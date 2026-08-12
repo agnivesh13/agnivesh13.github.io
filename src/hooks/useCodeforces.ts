@@ -10,6 +10,7 @@ export interface CodeforcesStats {
   maxRank: string;
   contests: number;
   history: number[];
+  solved: number;
 }
 
 /** `manual` marks a card whose platform has no CORS-enabled public API. */
@@ -25,6 +26,11 @@ interface CfUserInfo {
 
 interface CfRatingChange {
   newRating: number;
+}
+
+interface CfSubmission {
+  verdict?: string;
+  problem: { contestId?: number; index?: string; name: string };
 }
 
 const API = 'https://codeforces.com/api';
@@ -45,11 +51,16 @@ export function useCodeforces(handle: string = handles.codeforces) {
 
     async function load() {
       try {
-        const [infoRes, ratingRes] = await Promise.all([
+        const [infoRes, ratingRes, statusRes] = await Promise.all([
           fetch(`${API}/user.info?handles=${encodeURIComponent(handle)}`, {
             signal: controller.signal,
           }),
           fetch(`${API}/user.rating?handle=${encodeURIComponent(handle)}`, {
+            signal: controller.signal,
+          }),
+          // count=10000 keeps this exhaustive for a personal-scale handle;
+          // it's a nice-to-have, so a slow or failed call never blocks the rest.
+          fetch(`${API}/user.status?handle=${encodeURIComponent(handle)}&from=1&count=10000`, {
             signal: controller.signal,
           }),
         ]);
@@ -73,6 +84,21 @@ export function useCodeforces(handle: string = handles.codeforces) {
           }
         }
 
+        // Same treatment as history: a failed status call keeps the fallback
+        // count rather than reporting zero solved.
+        let solved = codeforcesFallback.solved;
+        if (statusRes.ok) {
+          const statusJson: { status: string; result?: CfSubmission[] } = await statusRes.json();
+          if (statusJson.status === 'OK' && statusJson.result) {
+            const unique = new Set(
+              statusJson.result
+                .filter((s) => s.verdict === 'OK')
+                .map((s) => `${s.problem.contestId ?? ''}${s.problem.index ?? ''}-${s.problem.name}`),
+            );
+            solved = unique.size;
+          }
+        }
+
         setStats({
           handle: user.handle,
           rating: user.rating ?? 0,
@@ -81,6 +107,7 @@ export function useCodeforces(handle: string = handles.codeforces) {
           maxRank: user.maxRank ?? 'unrated',
           contests: history.length || codeforcesFallback.contests,
           history: history.length ? history : codeforcesFallback.history,
+          solved,
         });
         setState('live');
       } catch (error) {

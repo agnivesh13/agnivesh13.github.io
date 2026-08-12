@@ -27,8 +27,8 @@ export default function About() {
           eyebrow="About me"
           title={
             <>
-              Machine learning, markets, and the{' '}
-              <span className="text-gradient-accent">systems between</span>.
+              Building systems at the intersection of{' '}
+              <span className="text-gradient-accent">software, AI, and markets</span>.
             </>
           }
         />
@@ -36,8 +36,18 @@ export default function About() {
         {/* Bio */}
         <div className="mt-8 max-w-3xl space-y-4">
           {about.map((paragraph, i) => (
-            <Reveal key={paragraph.slice(0, 24)} delay={i * 0.06}>
-              <p className="text-base leading-relaxed text-slate-400">{paragraph}</p>
+            <Reveal key={i} delay={i * 0.06}>
+              <p className="text-base leading-relaxed text-slate-400">
+                {paragraph.map((segment, j) =>
+                  typeof segment === 'string' ? (
+                    <span key={j}>{segment}</span>
+                  ) : (
+                    <strong key={j} className="font-semibold text-slate-200">
+                      {segment.bold}
+                    </strong>
+                  ),
+                )}
+              </p>
             </Reveal>
           ))}
         </div>

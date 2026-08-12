@@ -19,11 +19,33 @@ export const profile = {
   resume: '/resume.pdf',
 } as const;
 
-/** Longer-form "about me" copy, split into paragraphs. */
-export const about: string[] = [
-  "I'm a Computer Science undergrad at VNR VJIET specialising in Artificial Intelligence & Machine Learning, and currently a Quantitative Research Intern at Alfago Research LLP.",
-  'Most of my work lives at the intersection of ML and markets: designing systematic long/short strategies, stress-testing them with Monte Carlo permutation and walk-forward analysis so they survive contact with real data, and building the pipelines that feed them. I care as much about the validation that stops a strategy from being curve-fit as I do about the strategy itself.',
-  'Away from that I run an enterprise-grade homelab on pfSense, trade my own equity and commodities book, and solve algorithmic problems most days of the week.',
+/**
+ * Longer-form "about me" copy. Each paragraph is a list of segments — a plain
+ * string, or `{ bold: string }` for inline emphasis — so the bio can carry
+ * formatting without reaching for HTML or markdown.
+ */
+export type AboutSegment = string | { bold: string };
+
+export const about: AboutSegment[][] = [
+  [
+    "I'm a Computer Science undergraduate at VNR VJIET, specializing in Artificial Intelligence & Machine Learning, and currently working as a Quantitative Research Intern at Alfago Research LLP.",
+  ],
+  [
+    'I enjoy building things that sit between ',
+    { bold: 'software engineering, data, AI, and financial markets' },
+    '. My work ranges from designing systematic trading strategies and researching market data to building scalable data pipelines and cloud infrastructure that can handle real-world workloads.',
+  ],
+  [
+    "I'm particularly interested in the engineering behind these systems — from asynchronous data ingestion and time-series processing to AWS-based pipelines, APIs, and quantitative research workflows. I care about building systems that are not only functional, but reliable, scalable, and properly validated.",
+  ],
+  [
+    'Outside of projects and research, I spend a lot of time solving algorithmic problems, experimenting with new technologies, working on my homelab, and exploring how complex systems work under the hood.',
+  ],
+  [
+    "I'm ultimately interested in building ",
+    { bold: 'high-performance software, intelligent systems, and data-driven products' },
+    ' that solve meaningful problems.',
+  ],
 ];
 
 export const socials = {
@@ -173,6 +195,13 @@ export const codeforcesFallback = {
   contests: 10,
   /** Rating after each rated contest — drives the sparkline. */
   history: [429, 716, 906, 1042, 1139, 1157, 1152, 1115, 1133, 1138],
+  /**
+   * Unique accepted problems, counted from `user.status`. Hand-updated: the
+   * source call needs `count=10000` to be exhaustive, which is too slow to
+   * run on every page load.
+   * Last synced: 2026-08-09.
+   */
+  solved: 33,
 };
 
 /** GitHub is fetched live too; this is the offline fallback. */
@@ -205,10 +234,17 @@ export const leetcodeStats = {
   activeDays: 524,
 } as const;
 
-/** Hand-maintained — CodeChef exposes no CORS-enabled public API. */
+/**
+ * Hand-maintained — CodeChef exposes no public API at all (CORS-enabled or
+ * otherwise), so this can't be fetched from the browser even with a proxy
+ * that only forwards headers.
+ * Last synced: 2026-08-09, from the "Total Problems Solved" figure on the
+ * profile page.
+ */
 export const codechefStats = {
   rating: 1567,
   stars: 2,
+  solved: 329,
 } as const;
 
 /* ------------------------------------------------------------------ *
