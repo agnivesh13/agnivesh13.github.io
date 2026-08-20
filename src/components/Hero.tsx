@@ -3,6 +3,8 @@ import { ArrowDown, ArrowUpRight, MapPin, Sparkles } from 'lucide-react';
 
 import ParticleBackground from './ParticleBackground';
 import SocialLinks from './SocialLinks';
+import AuroraText from './ui/AuroraText';
+import Meteors from './ui/Meteors';
 import { profile } from '../data/site';
 import portrait from '../assets/portrait.jpg';
 
@@ -20,6 +22,7 @@ export default function Hero() {
   return (
     <section id="top" className="relative isolate flex min-h-[100svh] items-center overflow-hidden">
       <ParticleBackground />
+      <Meteors count={10} />
 
       {/* Ambient light: a cyan bloom top-left, violet bottom-right. */}
       <div
@@ -74,7 +77,7 @@ export default function Hero() {
             >
               Swami Agnivesh
               <br />
-              <span className="text-gradient-accent">Shaga</span>
+              <AuroraText>Shaga</AuroraText>
               <span className="text-slate-600">.</span>
             </motion.h1>
 
@@ -95,7 +98,7 @@ export default function Hero() {
             <motion.div variants={item} className="mt-9 flex flex-wrap items-center gap-3">
               <a
                 href="#projects"
-                className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-accent-400 to-accent-500 px-5 py-3 text-sm font-semibold text-ink-950 shadow-[0_0_28px_-6px_rgba(34,211,238,0.65)] transition-all duration-300 hover:shadow-[0_0_44px_-6px_rgba(34,211,238,0.9)] focus-visible:ring-offset-0"
+                className="shimmer-sheen group relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-accent-400 to-accent-500 px-5 py-3 text-sm font-semibold text-ink-950 shadow-[0_0_28px_-6px_rgba(34,211,238,0.65)] transition-all duration-300 hover:shadow-[0_0_44px_-6px_rgba(34,211,238,0.9)] focus-visible:ring-offset-0"
               >
                 <span className="relative">View Projects</span>
                 <ArrowUpRight className="relative h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

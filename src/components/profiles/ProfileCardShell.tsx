@@ -1,6 +1,7 @@
 import type { ComponentType, ReactNode, SVGProps } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 
+import BorderBeam from '../ui/BorderBeam';
 import SpotlightCard from '../ui/SpotlightCard';
 import type { FetchState } from '../../hooks/useCodeforces';
 import { cn } from '../../lib/cn';
@@ -88,6 +89,9 @@ export default function ProfileCardShell({
         className="relative flex h-full flex-col p-5 sm:p-6"
         glow={`${accent}22`}
       >
+        {/* Traveling edge light marks the flagship card. */}
+        {featured && <BorderBeam duration={8} colorFrom={accent} />}
+
         <div className="flex items-start justify-between gap-3">
           <div className="flex items-center gap-3">
             <span

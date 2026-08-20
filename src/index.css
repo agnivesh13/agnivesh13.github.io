@@ -70,6 +70,68 @@
   .text-gradient-accent {
     @apply bg-gradient-to-r from-accent-300 via-accent-400 to-plasma-400 bg-clip-text text-transparent;
   }
+
+  /*
+   * Border beam — a light that travels around a card's edge.
+   *
+   * A conic gradient spins inside a 1px padding ring; `mask-composite` punches
+   * out the centre so only the rim shows. Chosen over `offset-path: rect()`
+   * (Magic UI's approach) because that only landed in Chrome 116+ and still
+   * lags in other engines — this technique works everywhere mask-composite does.
+   */
+  .border-beam {
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: inherit;
+    overflow: hidden;
+    pointer-events: none;
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+  }
+
+  .border-beam::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 200%;
+    aspect-ratio: 1;
+    translate: -50% -50%;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0%,
+      var(--beam-from, theme('colors.accent.400')) 8%,
+      var(--beam-to, theme('colors.plasma.400')) 14%,
+      transparent 24%
+    );
+    animation: border-beam-spin var(--beam-duration, 7s) linear infinite;
+    animation-delay: var(--beam-delay, 0s);
+  }
+
+  /* Traveling sheen across a button face. */
+  .shimmer-sheen::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    /* Narrow, low-opacity band: a passing glint, not a wash over the fill. */
+    background: linear-gradient(
+      110deg,
+      transparent 42%,
+      rgba(255, 255, 255, 0.32) 50%,
+      transparent 58%
+    );
+    background-size: 250% 100%;
+    animation: shimmer-sweep 4.5s ease-in-out infinite;
+    pointer-events: none;
+  }
 }
 
 @layer utilities {

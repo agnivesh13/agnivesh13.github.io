@@ -7,6 +7,7 @@ import {
   TrendingUp,
 } from 'lucide-react';
 
+import BorderBeam from './ui/BorderBeam';
 import Reveal from './ui/Reveal';
 import SectionHeading from './ui/SectionHeading';
 import SpotlightCard from './ui/SpotlightCard';
@@ -71,6 +72,9 @@ export default function About() {
                 />
 
                 <SpotlightCard className="relative p-5 sm:p-7">
+                  {/* Headline credential on the page — give it the beam. */}
+                  <BorderBeam duration={9} />
+
                   <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                     <div>
                       <h4 className="font-display text-xl font-semibold tracking-tight text-white">

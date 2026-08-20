@@ -42,6 +42,8 @@ export default {
         'pulse-glow': 'pulse-glow 3.5s ease-in-out infinite',
         'spin-slow': 'spin 14s linear infinite',
         shimmer: 'shimmer 2.5s linear infinite',
+        meteor: 'meteor var(--meteor-duration, 5s) linear infinite',
+        aurora: 'aurora 8s ease-in-out infinite',
       },
       keyframes: {
         marquee: {
@@ -59,6 +61,27 @@ export default {
         shimmer: {
           from: { backgroundPosition: '200% 0' },
           to: { backgroundPosition: '-200% 0' },
+        },
+        'shimmer-sweep': {
+          '0%': { backgroundPosition: '150% 0' },
+          // Long tail so the sheen reads as an occasional glint, not a strobe.
+          '60%, 100%': { backgroundPosition: '-150% 0' },
+        },
+        'border-beam-spin': {
+          to: { rotate: '360deg' },
+        },
+        meteor: {
+          '0%': { transform: 'rotate(215deg) translateX(0)', opacity: '0' },
+          '10%': { opacity: '1' },
+          '85%': { opacity: '1' },
+          '100%': {
+            transform: 'rotate(215deg) translateX(-800px)',
+            opacity: '0',
+          },
+        },
+        aurora: {
+          '0%, 100%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
         },
       },
       backgroundImage: {

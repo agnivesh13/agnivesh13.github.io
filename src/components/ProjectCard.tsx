@@ -1,5 +1,6 @@
 import { ArrowUpRight, FileText, GitFork, Github } from 'lucide-react';
 
+import BorderBeam from './ui/BorderBeam';
 import SpotlightCard from './ui/SpotlightCard';
 import type { Project } from '../data/site';
 import { cn } from '../lib/cn';
@@ -22,6 +23,9 @@ export default function ProjectCard({ project }: { project: Project }) {
 
   return (
     <SpotlightCard className="flex h-full flex-col p-5 sm:p-6">
+      {/* Flagship projects get the traveling edge light. */}
+      {project.featured && <BorderBeam duration={10} />}
+
       {/* Header: category + status, then the outbound links */}
       <div className="flex items-start justify-between gap-3">
         <div className="flex flex-wrap items-center gap-2">
