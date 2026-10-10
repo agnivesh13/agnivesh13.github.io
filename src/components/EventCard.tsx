@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Calendar, Linkedin, MapPin, Server, ShieldCheck, Trophy } from 'lucide-react';
+import { BookOpen, Calendar, Linkedin, MapPin, Server, ShieldCheck, Trophy } from 'lucide-react';
 
 import SpotlightCard from './ui/SpotlightCard';
 import type { EventItem } from '../data/site';
@@ -8,6 +8,11 @@ const ICONS = {
   trophy: Trophy,
   server: Server,
   shield: ShieldCheck,
+} as const;
+
+const SOURCES = {
+  linkedin: { Icon: Linkedin, label: 'Read the post', hover: 'hover:text-[#0A66C2]' },
+  medium: { Icon: BookOpen, label: 'Read on Medium', hover: 'hover:text-white' },
 } as const;
 
 /**
@@ -29,6 +34,7 @@ function EventMedia({ event }: { event: EventItem }) {
           loading="lazy"
           decoding="async"
           onError={() => setFailed(true)}
+          style={{ objectPosition: event.imagePosition }}
           className="h-full w-full object-cover transition-transform duration-700 group-hover/spot:scale-105"
         />
       ) : (
@@ -71,6 +77,8 @@ function EventMedia({ event }: { event: EventItem }) {
 }
 
 export default function EventCard({ event }: { event: EventItem }) {
+  const source = SOURCES[event.source ?? 'linkedin'];
+
   return (
     <SpotlightCard className="p-4 sm:p-5" glow={`${event.accent}1f`}>
       <div className="grid gap-5 sm:grid-cols-5">
@@ -142,10 +150,10 @@ export default function EventCard({ event }: { event: EventItem }) {
               href={event.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex shrink-0 items-center gap-1.5 font-mono text-[11px] text-slate-500 transition-colors duration-300 hover:text-[#0A66C2]"
+              className={`inline-flex shrink-0 items-center gap-1.5 font-mono text-[11px] text-slate-500 transition-colors duration-300 ${source.hover}`}
             >
-              <Linkedin className="h-3.5 w-3.5" />
-              Read the post
+              <source.Icon className="h-3.5 w-3.5" />
+              {source.label}
             </a>
           </div>
         </div>

@@ -464,18 +464,43 @@ export interface EventItem {
   highlights: string[];
   tags: string[];
   link: string;
+  /** Where `link` points — drives the link's icon and label. Defaults to LinkedIn. */
+  source?: 'linkedin' | 'medium';
   /**
    * Optional photo served from `public/events/`.
    * If the file is missing the card falls back to a designed gradient panel,
    * so it never renders broken — drop the image in and it appears.
    */
   image?: string;
+  /** CSS `object-position` for the photo, when the default centre crop cuts the subject. */
+  imagePosition?: string;
   icon: 'trophy' | 'server' | 'shield';
   accent: string;
   result?: string;
 }
 
 export const events: EventItem[] = [
+  {
+    title: 'Amazon ML Challenge 2026',
+    kind: 'Competition',
+    date: 'September 2026',
+    isoDate: '2026-09-27',
+    summary:
+      'A 72-hour entity-resolution sprint with "The Usual Suspects": match every business in a clean reference list to its noisy, typo-ridden and partly Indic-script duplicates across 11.7M records, including a country (France) that never appeared in training.',
+    highlights: [
+      'Country-scoped TF-IDF blocking with GPU fp16 top-K search kept 99.1% of true pairs while pruning 99.998% of the search space',
+      'LightGBM on 62 features, a cluster-aware second stage and an expected-F0.5 decoder, then a LoRA-tuned Qwen3 Embedding-8B cross-encoder on only the uncertain pairs',
+      'Rebuilt validation to mirror the test set, and recovered France by reading unseen address conventions straight from the data',
+    ],
+    tags: ['LightGBM', 'Qwen3 8B', 'LoRA', 'TF-IDF', 'Entity Resolution', 'Python'],
+    link: 'https://medium.com/@agniveshshaga/72-hours-11-7-million-records-and-one-unseen-country-our-amazon-ml-challenge-2026-story-ff7e80228b8e',
+    source: 'medium',
+    image: '/events/amazon-ml-challenge.png',
+    imagePosition: 'left',
+    icon: 'trophy',
+    accent: '#ff9900',
+    result: 'Rank 313 / ~4,300 · F0.5 0.9874',
+  },
   {
     title: 'Trading Bot in Production on AWS',
     kind: 'Deployment',

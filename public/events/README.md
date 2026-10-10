@@ -5,6 +5,7 @@ filenames. Each card picks its image up automatically — no code change needed.
 
 | File                      | Event                                    |
 | ------------------------- | ---------------------------------------- |
+| `amazon-ml-challenge.png` | Amazon ML Challenge 2026                 |
 | `aws-trading-bot.jpg`     | Trading Bot in Production on AWS         |
 | `pfsense-homelab.jpg`     | Zero-Trust Home Network with pfSense     |
 | `nexovate-hackathon.jpg`  | Nexovate'25 Hackathon                    |
