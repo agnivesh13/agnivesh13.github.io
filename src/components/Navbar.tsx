@@ -4,6 +4,7 @@ import { FileText, Menu, X } from 'lucide-react';
 
 import { navLinks, profile } from '../data/site';
 import { cn } from '../lib/cn';
+import ResumeLink from './ResumeLink';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -96,15 +97,12 @@ export default function Navbar() {
         </ul>
 
         <div className="flex items-center gap-2">
-          <a
-            href={profile.resume}
-            target="_blank"
-            rel="noopener noreferrer"
+          <ResumeLink
             className="hidden items-center gap-2 rounded-lg border border-white/12 bg-white/[0.04] px-3.5 py-2 text-sm font-medium text-slate-200 transition-colors hover:border-accent-400/40 hover:bg-accent-400/10 hover:text-white sm:inline-flex"
           >
             <FileText className="h-4 w-4" />
             Resume
-          </a>
+          </ResumeLink>
 
           <button
             type="button"
@@ -141,16 +139,13 @@ export default function Navbar() {
                 </li>
               ))}
               <li>
-                <a
-                  href={profile.resume}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setOpen(false)}
+                <ResumeLink
+                  onOpen={() => setOpen(false)}
                   className="flex items-center gap-2 rounded-xl px-4 py-3 text-sm text-accent-300 transition-colors hover:bg-white/5"
                 >
                   <FileText className="h-4 w-4" />
                   Resume
-                </a>
+                </ResumeLink>
               </li>
             </ul>
           </motion.div>

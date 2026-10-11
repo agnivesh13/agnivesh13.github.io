@@ -5,6 +5,7 @@ import {
   Flame,
   GraduationCap,
   TrendingUp,
+  Trophy,
 } from 'lucide-react';
 
 import BorderBeam from './ui/BorderBeam';
@@ -18,6 +19,7 @@ const ACHIEVEMENT_ICONS = {
   award: Award,
   chart: TrendingUp,
   badge: BadgeCheck,
+  trophy: Trophy,
 } as const;
 
 export default function About() {
@@ -126,11 +128,6 @@ export default function About() {
                       </li>
                     ))}
                   </ul>
-
-                  {/* The return figure is backtested, not realised — say so. */}
-                  <p className="mt-5 font-mono text-[10px] leading-relaxed text-slate-600">
-                    Returns shown are simulated from historical backtests.
-                  </p>
                 </SpotlightCard>
               </div>
             </Reveal>

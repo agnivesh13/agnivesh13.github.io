@@ -90,8 +90,8 @@ export default function Hero() {
 
             {/* Headline credential, straight from the resume. */}
             <motion.p variants={item} className="mt-5 text-sm text-slate-500">
-              Quantitative Research Intern at{' '}
-              <span className="text-slate-300">Alfago Research</span> · CSE (AI &amp; ML) at{' '}
+              Previously Software Engineer Intern at{' '}
+              <span className="text-slate-300">Alfago Research</span> · Final-year CSE (AI &amp; ML) at{' '}
               <span className="text-slate-300">VNR VJIET</span>
             </motion.p>
 

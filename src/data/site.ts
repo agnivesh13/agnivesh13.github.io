@@ -17,6 +17,8 @@ export const profile = {
   email: 'agniveshshaga@gmail.com',
   phone: '+91 86398 71199',
   resume: '/resume.pdf',
+  /** Filename offered when the résumé is downloaded. */
+  resumeFileName: 'Swami-Agnivesh-Shaga-Resume.pdf',
 } as const;
 
 /**
@@ -28,7 +30,7 @@ export type AboutSegment = string | { bold: string };
 
 export const about: AboutSegment[][] = [
   [
-    "I'm a Computer Science undergraduate at VNR VJIET, specializing in Artificial Intelligence & Machine Learning, and currently working as a Quantitative Research Intern at Alfago Research LLP.",
+    "I'm a final-year Computer Science undergraduate at VNR VJIET, specializing in Artificial Intelligence & Machine Learning. Most recently I was a Software Engineer Intern at Alfago Research LLP, building the execution backend for a multi-account trading system.",
   ],
   [
     'I enjoy building things that sit between ',
@@ -74,33 +76,41 @@ export interface Role {
 export const experience: Role[] = [
   {
     company: 'Alfago Research LLP',
-    title: 'Quantitative Research Intern',
+    title: 'Software Engineer Intern',
     period: 'Dec 2025 – May 2026',
     location: 'Hyderabad, India',
     highlights: [
       {
-        label: 'Algorithm Engineering',
-        text: 'Engineered automated systematic long/short trading algorithms for Silver and Natural Gas commodities across 2+ years of historical market data.',
+        label: 'Execution Engine',
+        text: 'Built the Python/asyncio service that turns strategy instructions from AWS SQS into broker orders, in a two-person team. Each signal sets a target position and the engine reconciles it against the live broker book, so duplicate signals and restarts never double an order.',
       },
       {
-        label: 'Statistical Validation',
-        text: 'Designed validation frameworks using Monte Carlo permutation tests, in-sample and walk-forward analysis to prevent curve-fitting and prove system resilience.',
+        label: 'Failure-Safe Orders',
+        text: 'Deterministic client order IDs behind a PostgreSQL unique constraint; an explicit UNKNOWN state for timed-out placements that is resolved from the broker book, never blindly retried; an append-only order-event log as the source of truth; and a bound on every retry loop that counts failures, not just successes.',
       },
       {
-        label: 'Parameter Optimisation',
-        text: 'Tuned volatility-based parameters — ATR-driven stop loss and trailing stop loss, TEMA, RSI — to maximise risk-adjusted performance.',
+        label: 'Trading Controls',
+        text: "Shipped staged multi-leg option spreads that hold the hedge before releasing the next leg, a scoped kill switch that cancels resting orders and flattens positions, and per-client paper/live modes — all within SEBI's 2026 retail-algo rules: limit orders only, a static IP per client and a daily OAuth login.",
       },
       {
-        label: 'Financial Modelling',
-        text: 'Built Discounted Cash Flow models to evaluate complex equity valuations for investment research.',
+        label: 'Broker Integration',
+        text: 'Integrated Tradejini execution and Fyers market data behind a broker adapter, covering OAuth 2.0 sessions, per-account rate limiting, instrument symbol translation, MCX lot handling and static IP routing through AWS Elastic IPs.',
+      },
+      {
+        label: 'Operations Dashboard',
+        text: 'Built a React dashboard for positions, P&L by expiry, order and audit history, error handling, paper/live controls and the kill switch, with live prices over Server-Sent Events — and unknown values shown as unknown, never as zero.',
+      },
+      {
+        label: 'Delivery & Cloud',
+        text: 'Owned 78 tickets (61 bug fixes, 13 features) across ~100 merged PRs, each fix shipped with a regression test that failed first. Grew the suite to 127 integration tests on CI against real PostgreSQL, and ran it on EC2, RDS, Secrets Manager and SNS with systemd and Nginx.',
       },
     ],
     metrics: [
-      { label: 'Silver win rate', value: '88%' },
-      { label: 'Nat. Gas win rate', value: '83%' },
-      { label: 'Simulated return', value: '₹22.34L' },
+      { label: 'Tickets owned', value: '78' },
+      { label: 'Merged PRs', value: '~100' },
+      { label: 'Integration tests', value: '127' },
     ],
-    tags: ['Python', 'Monte Carlo', 'Walk-forward', 'ATR / TEMA / RSI', 'DCF'],
+    tags: ['Python', 'asyncio', 'FastAPI', 'PostgreSQL', 'AWS SQS', 'React', 'SSE', 'OAuth 2.0'],
   },
 ];
 
@@ -143,20 +153,30 @@ export const education: Education[] = [
 export interface Achievement {
   title: string;
   detail: string;
-  icon: 'flame' | 'award' | 'chart' | 'badge';
+  icon: 'flame' | 'award' | 'chart' | 'badge' | 'trophy';
 }
 
 export const achievements: Achievement[] = [
   {
-    title: '466 problems on LeetCode',
-    detail:
-      'Algorithms and data structures across 524 active days, with a peak 144-day daily streak.',
-    icon: 'flame',
+    title: 'Amazon ML Challenge 2026',
+    detail: 'Ranked 313th of ~4,300 teams — 1st among VNR VJIET teams.',
+    icon: 'trophy',
   },
   {
     title: 'Honourable Mention — CodeVerse',
     detail: 'Top 10 of 300+ teams at Turing Hut, qualifying among the top 25 finalists.',
     icon: 'award',
+  },
+  {
+    title: "Top 25 — Nexovate'25",
+    detail: 'Placed among the top 25 of 400+ teams at Presidency University, Bengaluru.',
+    icon: 'award',
+  },
+  {
+    title: '467 problems on LeetCode',
+    detail:
+      'Algorithms and data structures across 524 active days, with a peak 144-day daily streak.',
+    icon: 'flame',
   },
   {
     title: 'Independent algo trader',
@@ -220,15 +240,15 @@ export const githubFallback = {
  *     -H 'Content-Type: application/json' -H 'Referer: https://leetcode.com' \
  *     -d '{"query":"query($u:String!){matchedUser(username:$u){submitStatsGlobal{acSubmissionNum{difficulty count}}} userContestRanking(username:$u){rating attendedContestsCount topPercentage}}","variables":{"u":"agniveshshaga"}}'
  *
- * Last synced: 2026-08-09.
+ * Last synced: 2026-10-11.
  */
 export const leetcodeStats = {
   rating: 1553,
   contests: 19,
-  topPercent: 31.8,
-  solved: 466,
+  topPercent: 32.2,
+  solved: 467,
   easy: 285,
-  medium: 172,
+  medium: 173,
   hard: 9,
   /** Days with at least one accepted submission, 2024–2026. */
   activeDays: 524,
@@ -291,17 +311,18 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    title: 'Niyantrana — NAFLD Risk Prediction',
+    title: 'Niyantrana — Metabolic Risk Screening',
     blurb:
-      'LSTM–MLP fusion model for early detection of non-alcoholic fatty liver disease, forecasting biomarkers and computing Fatty Liver Index scores. A RAG module turns those predictions into evidence-based lifestyle coaching, and the whole thing ships through an automated retraining and container pipeline.',
+      'Gradient-boosted models over 17,961 NHANES adults that turn 14 days of wearable and diet logs into calibrated risk for triglycerides, GGT, HbA1c and blood pressure. After catching window leakage behind an inflated R² of 0.97, it was revalidated on a held-out survey cycle with SHAP explanations, then shipped as a 145 MiB FastAPI service with RAG-backed food guidance.',
     category: 'ml',
-    tags: ['TensorFlow', 'scikit-learn', 'RAG', 'Flask', 'Docker', 'GitHub Actions'],
+    tags: ['scikit-learn', 'SHAP', 'FastAPI', 'React', 'Node.js', 'MongoDB', 'Docker'],
     writeup:
       'https://www.linkedin.com/posts/agniveshshaga_nexovate25-hackathon-healthcareai-activity-7368703740356292610-1MBO',
-    period: 'Sep 2025',
+    period: 'Sep 2025 – Sep 2026',
     metrics: [
-      { label: 'ROC-AUC', value: '88%' },
-      { label: 'Manual toil', value: '−70%' },
+      { label: 'AUROC', value: '0.80' },
+      { label: 'Sensitivity', value: '90%+' },
+      { label: 'Tests', value: '242' },
     ],
     featured: true,
   },
@@ -416,7 +437,19 @@ export interface SkillGroup {
 export const skillGroups: SkillGroup[] = [
   {
     title: 'Languages',
-    items: ['Python', 'C++', 'C', 'Java', 'R', 'SQL'],
+    items: ['Python', 'C++', 'C', 'Java', 'JavaScript', 'R', 'SQL'],
+  },
+  {
+    title: 'Backend & Web',
+    items: ['FastAPI', 'asyncio', 'Flask', 'Node.js', 'React', 'PostgreSQL', 'MongoDB', 'OAuth 2.0', 'SSE', 'WebSockets'],
+  },
+  {
+    title: 'ML & Data',
+    items: ['scikit-learn', 'TensorFlow', 'SHAP', 'pandas', 'NumPy', 'RAG'],
+  },
+  {
+    title: 'Cloud & DevOps',
+    items: ['AWS EC2 / RDS', 'SQS / SNS', 'S3 / Lambda', 'Docker', 'Nginx', 'systemd', 'GitHub Actions'],
   },
   {
     title: 'Quant & Trading',
@@ -430,20 +463,8 @@ export const skillGroups: SkillGroup[] = [
     ],
   },
   {
-    title: 'ML & Data',
-    items: ['TensorFlow', 'scikit-learn', 'pandas', 'NumPy', 'RAG', 'Jupyter'],
-  },
-  {
-    title: 'Cloud & Infra',
-    items: ['AWS EC2', 'AWS Lambda', 'S3', 'Docker', 'Terraform', 'GitHub Actions'],
-  },
-  {
     title: 'Networking',
     items: ['pfSense', 'OpenVPN', 'VLANs', 'TCP/IP', 'Linux'],
-  },
-  {
-    title: 'Web & Tools',
-    items: ['FastAPI', 'Flask', 'React', 'Node.js', 'MySQL', 'Git'],
   },
 ];
 
@@ -556,7 +577,7 @@ export const events: EventItem[] = [
     image: '/events/nexovate-hackathon.jpg',
     icon: 'trophy',
     accent: '#a78bfa',
-    result: 'Top 25 of 600+ teams',
+    result: 'Top 25 of 400+ teams',
   },
 ];
 

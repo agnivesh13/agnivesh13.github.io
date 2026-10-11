@@ -1,6 +1,7 @@
 import { ArrowUpRight, Mail } from 'lucide-react';
 
 import Reveal from './ui/Reveal';
+import ResumeLink from './ResumeLink';
 import SocialLinks from './SocialLinks';
 import { navLinks, profile } from '../data/site';
 
@@ -47,15 +48,12 @@ export default function Footer() {
                 <Mail className="h-4 w-4" />
                 {profile.email}
               </a>
-              <a
-                href={profile.resume}
-                target="_blank"
-                rel="noopener noreferrer"
+              <ResumeLink
                 className="group inline-flex items-center gap-2 rounded-xl border border-white/12 bg-white/[0.04] px-5 py-3 text-sm font-medium text-slate-200 transition-colors duration-300 hover:border-accent-400/40 hover:bg-accent-400/10 hover:text-white"
               >
                 Résumé
                 <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </a>
+              </ResumeLink>
             </div>
           </Reveal>
 
