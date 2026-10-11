@@ -14,7 +14,7 @@ export default function Events() {
               Where I&apos;ve been <span className="text-gradient-accent">shipping</span>.
             </>
           }
-          description="Competitions, hackathons, production deployments, and the infrastructure I run at home — the work that happens outside a repository."
+          description="Competitions, hackathons, production deployments, and the infrastructure I run at home: the work that happens outside a repository."
         />
 
         {/* Timeline: a vertical spine with a node per event. */}

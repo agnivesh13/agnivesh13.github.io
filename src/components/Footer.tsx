@@ -34,8 +34,8 @@ export default function Footer() {
           <Reveal delay={0.12}>
             <p className="mt-5 max-w-lg text-base leading-relaxed text-slate-400">
               I&apos;m looking for roles in quantitative research, algorithmic trading and applied
-              machine learning. If you have an interesting problem — or just want to talk markets
-              and models — my inbox is open.
+              machine learning. If you have an interesting problem, or just want to talk markets
+              and models, my inbox is open.
             </p>
           </Reveal>
 

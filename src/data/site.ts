@@ -13,7 +13,7 @@ export const profile = {
   location: 'Hyderabad, India',
   available: true,
   tagline:
-    'I work where machine learning meets financial markets — systematic trading algorithms, the validation frameworks that keep them honest, and the data infrastructure underneath.',
+    'I work where machine learning meets financial markets: systematic trading algorithms, the validation frameworks that keep them honest, and the data infrastructure underneath.',
   email: 'agniveshshaga@gmail.com',
   phone: '+91 86398 71199',
   resume: '/resume.pdf',
@@ -38,7 +38,7 @@ export const about: AboutSegment[][] = [
     '. My work ranges from designing systematic trading strategies and researching market data to building scalable data pipelines and cloud infrastructure that can handle real-world workloads.',
   ],
   [
-    "I'm particularly interested in the engineering behind these systems — from asynchronous data ingestion and time-series processing to AWS-based pipelines, APIs, and quantitative research workflows. I care about building systems that are not only functional, but reliable, scalable, and properly validated.",
+    "I'm particularly interested in the engineering behind these systems, from asynchronous data ingestion and time-series processing to AWS-based pipelines, APIs, and quantitative research workflows. I care about building systems that are not only functional, but reliable, scalable, and properly validated.",
   ],
   [
     'Outside of projects and research, I spend a lot of time solving algorithmic problems, experimenting with new technologies, working on my homelab, and exploring how complex systems work under the hood.',
@@ -90,7 +90,7 @@ export const experience: Role[] = [
       },
       {
         label: 'Trading Controls',
-        text: "Shipped staged multi-leg option spreads that hold the hedge before releasing the next leg, a scoped kill switch that cancels resting orders and flattens positions, and per-client paper/live modes — all within SEBI's 2026 retail-algo rules: limit orders only, a static IP per client and a daily OAuth login.",
+        text: "Shipped staged multi-leg option spreads that hold the hedge before releasing the next leg, a scoped kill switch that cancels resting orders and flattens positions, and per-client paper/live modes, all within SEBI's 2026 retail-algo rules: limit orders only, a static IP per client and a daily OAuth login.",
       },
       {
         label: 'Broker Integration',
@@ -98,7 +98,7 @@ export const experience: Role[] = [
       },
       {
         label: 'Operations Dashboard',
-        text: 'Built a React dashboard for positions, P&L by expiry, order and audit history, error handling, paper/live controls and the kill switch, with live prices over Server-Sent Events — and unknown values shown as unknown, never as zero.',
+        text: 'Built a React dashboard for positions, P&L by expiry, order and audit history, error handling, paper/live controls and the kill switch, with live prices over Server-Sent Events. Unknown values are shown as unknown, never as zero.',
       },
       {
         label: 'Delivery & Cloud',
@@ -159,16 +159,16 @@ export interface Achievement {
 export const achievements: Achievement[] = [
   {
     title: 'Amazon ML Challenge 2026',
-    detail: 'Ranked 313th of ~4,300 teams — 1st among VNR VJIET teams.',
+    detail: 'Ranked 313th of ~4,300 teams, and 1st among VNR VJIET teams.',
     icon: 'trophy',
   },
   {
-    title: 'Honourable Mention — CodeVerse',
+    title: 'Honourable Mention, CodeVerse',
     detail: 'Top 10 of 300+ teams at Turing Hut, qualifying among the top 25 finalists.',
     icon: 'award',
   },
   {
-    title: "Top 25 — Nexovate'25",
+    title: "Top 25 at Nexovate'25",
     detail: 'Placed among the top 25 of 400+ teams at Presidency University, Bengaluru.',
     icon: 'award',
   },
@@ -311,7 +311,7 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    title: 'Niyantrana — Metabolic Risk Screening',
+    title: 'Niyantrana: Metabolic Risk Screening',
     blurb:
       'Gradient-boosted models over 17,961 NHANES adults that turn 14 days of wearable and diet logs into calibrated risk for triglycerides, GGT, HbA1c and blood pressure. After catching window leakage behind an inflated R² of 0.97, it was revalidated on a held-out survey cycle with SHAP explanations, then shipped as a 145 MiB FastAPI service with RAG-backed food guidance.',
     category: 'ml',
@@ -372,7 +372,7 @@ export const projects: Project[] = [
   {
     title: 'PrimoAgent',
     blurb:
-      'Multi-agent LLM system for stock analysis — a fork I work in to study how agent orchestration, tool use and role specialisation behave on real financial data.',
+      'Multi-agent LLM system for stock analysis. A fork I work in to study how agent orchestration, tool use and role specialisation behave on real financial data.',
     category: 'quant',
     tags: ['Python', 'LLM Agents', 'Multi-Agent'],
     github: 'https://github.com/agnivesh13/PrimoAgent',
@@ -381,7 +381,7 @@ export const projects: Project[] = [
   {
     title: 'WebShare',
     blurb:
-      'Cross-platform file sharing over peer-to-peer transfers on the local network or short room codes — no account, no upload step, no server holding your files.',
+      'Cross-platform file sharing over peer-to-peer transfers on the local network or short room codes. No account, no upload step, no server holding your files.',
     category: 'web',
     tags: ['TypeScript', 'React', 'WebRTC', 'Socket.io'],
     github: 'https://github.com/agnivesh13/WebShare',
@@ -528,7 +528,7 @@ export const events: EventItem[] = [
     date: 'January 2026',
     isoDate: '2026-01-27',
     summary:
-      'Took a private silver-commodity algorithm from a local script to a hardened, always-on service on AWS EC2 — the difference between code that runs and code that stays running.',
+      'Took a private silver-commodity algorithm from a local script to a hardened, always-on service on AWS EC2: the difference between code that runs and code that stays running.',
     highlights: [
       'Daemonised as a systemd service for automatic restart and state recovery across reboots',
       'Real-time market data streamed over Fyers API WebSockets',
@@ -566,7 +566,7 @@ export const events: EventItem[] = [
     isoDate: '2025-08-29',
     location: 'Presidency University, Bengaluru',
     summary:
-      'Built Niyantrana in 24 hours — the health-tech system that became my NAFLD risk-prediction project — linking wearable activity data to blood vitals.',
+      'Built Niyantrana in 24 hours, the health-tech system that became my NAFLD risk-prediction project, linking wearable activity data to blood vitals.',
     highlights: [
       'LSTM modelling how long-term lifestyle patterns from wearables move Triglycerides and GGT',
       'MLP capturing short-term dietary effects on the same vitals',

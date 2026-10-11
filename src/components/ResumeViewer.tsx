@@ -77,7 +77,7 @@ export default function ResumeViewer({ children }: { children: ReactNode }) {
                   className="flex min-w-0 items-center gap-2 font-display text-sm font-semibold text-white"
                 >
                   <FileText className="h-4 w-4 shrink-0 text-accent-400" />
-                  <span className="truncate">{profile.name} — Résumé</span>
+                  <span className="truncate">{profile.name} · Résumé</span>
                 </h2>
 
                 <div className="flex shrink-0 items-center gap-2">

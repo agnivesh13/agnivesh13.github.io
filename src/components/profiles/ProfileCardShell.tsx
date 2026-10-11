@@ -31,7 +31,7 @@ function StatusDot({ state }: { state: FetchState }) {
   if (state === 'manual') {
     return (
       <span
-        title="This platform has no CORS-enabled public API — figures are updated by hand"
+        title="This platform has no CORS-enabled public API, so figures are updated by hand"
         className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider text-slate-500"
       >
         <span className="h-1.5 w-1.5 rounded-full bg-slate-600" />
@@ -43,7 +43,7 @@ function StatusDot({ state }: { state: FetchState }) {
   if (state === 'fallback') {
     return (
       <span
-        title="Live API unreachable — showing the last saved snapshot"
+        title="Live API unreachable. Showing the last saved snapshot."
         className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider text-slate-500"
       >
         <span className="h-1.5 w-1.5 rounded-full bg-slate-600" />
